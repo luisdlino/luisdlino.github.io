@@ -1,0 +1,49 @@
+ <section class="sub-header">
+  <div class="row">
+        <div class="col-md-3 col-sm-12 col-xs-12">
+          <div class="input-group search">
+              <input type="text" class="form-control" id="textSearch" placeholder="Filtre pelo endereço..." [(ngModel)]="textSearch" (keyup)="onKey()">
+              <div class="input-group-addon" id="searchIcon"><a href="#"><i class="fa fa-search"></i></a></div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-6 col-xs-6 temperatura sectionSub">
+          <div id="tempSlide" onClick="showSlider('temp')">
+            <i class="fa fa-thermometer-half" aria-hidden="true"></i>
+            <span class="resultado">TEMPERATURA</span>
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+          </div>
+          <div class="subHeaderModal temp">
+            <h4>Selecione um intervalo de temperatura para filtrar</h4>
+            <div class="box">{{someRangeTmp[0]}}</div>
+            <nouislider class="sliderBase" [connect]="false" [step]="5" [min]="-40" [max]="40" [(ngModel)]="someRangeTmp" (change)="sliderFunc( 'temperatura')"></nouislider>
+            <div class="box pull-right">{{someRangeTmp[1]}}</div>          
+          </div>  
+        </div>
+        <div class="col-md-2 abertura col-sm-6 col-xs-6 sectionSub">
+          <div id="abertSlide" onClick="showSlider('abert')">
+            <img src="assets/images/abertura.png" />
+            <span class="resultado">ABERTURA</span>
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+          </div>
+          <div class="subHeaderModal abert" >
+            <h4>Selecione um intervalo de abertura para filtrar</h4>
+            <div class="box">{{someRangeAbt[0]}}</div>
+            <nouislider class="sliderBase" [connect]="false" [step]="15" [min]="0" [max]="500" [(ngModel)]="someRangeAbt" (change)="sliderFunc( 'abertura')"></nouislider>    
+            <div class="box pull-right">{{someRangeAbt[1]}}</div>   
+          </div>
+        </div>
+        <div class="col-md-2 sectionSub col-sm-6 col-xs-6 status">
+          <span class="resultado">Status</span>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" (change)="emittChecked('OFF')" value="OFF"> OFF
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" (change)="emittChecked('ON')" value="ON"> ON
+            </label>          
+        </div>
+        <div class="cleanFilter col-md-3 col-sm-6 col-xs-6">
+          <button class="btn" (click)="Clean(true)">LIMPAR FILTROS</button>
+        </div>                                
+      </div> 
+    </section>
+

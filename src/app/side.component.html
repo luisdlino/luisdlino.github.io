@@ -1,0 +1,117 @@
+ <filters-app (checkRadio)="checkFilter($event)" (clean)="Clean()" (keyu)="seachKey($event)" (sliderVal)="sliderInput($event)"></filters-app>
+ 	 <div class="showSide" onclick="showList()"><i class="fa fa-bars" aria-hidden="true"></i></div>
+     <section class="side">
+     <input type="hidden" value="{{teste}}" />
+    <div class="filter">
+      <div class="labelFilter">
+        Ordernar por
+      </div>
+      <div class="selectFilter">
+      <select class="form-control" [(ngModel)]="selection">
+        <option *ngFor="let option of options" value="{{option.value}}">{{option.desc}}</option>
+      </select>
+      </div>
+    </div>
+
+    <div class="scroll">
+      <span *ngFor="let device of devices | sort: selection | filterCheck: valueStatus:checkedStatus | seachFilter : searchValue | sliderFilter: sliderMinValue:sliderMaxValue:sliderMoved">
+
+      <div class="item" id="{{ device.uid }}" onClick="showModal(this)">
+        <h4>Geladeira {{ device.uid }}</h4>
+       	<img class="imgFreezer" src="assets/images/geladeira.png" />
+        <p class="endereco">{{ device.endereco }}</p>
+        <div class="info">
+          <i class="fa fa-thermometer-half" aria-hidden="true"></i>
+          <i class="fa fa-caret-down" aria-hidden="true"></i>
+          <span class="resultado">{{ device.temperatura }}°C</span>
+          <i class="fa fa-caret-down" aria-hidden="true"></i>
+          <span class="resultado">{{ device.temperatura }}°C</span>
+          <img src="assets/images/abertura.png" />
+          <span class="resultado">{{ device.abertura }}</span>
+          <span class="onOff">
+          	{{ device.status }}
+          </span>
+        
+        </div>
+      </div> 
+
+
+      	    <div class='modal modal{{ device.uid }}' style="display: none; background: rgba(0,0,0,0.6);">
+      	      <span class="hidden" id="mensalDia{{ device.uid }}"><ng-container *ngFor="let obj of device.historico.mensal">{{obj.date}} </ng-container></span> 
+		      <span class="hidden" id="mensalTmp{{ device.uid }}"><ng-container *ngFor="let obj of device.historico.mensal">{{obj.temperatura}} </ng-container></span> 
+		      <span class="hidden" id="mensalAbt{{ device.uid }}"><ng-container *ngFor="let obj of device.historico.mensal">{{obj.abertura}} </ng-container></span> 
+		      <span class="hidden" id="mensalCsm{{ device.uid }}"><ng-container *ngFor="let obj of device.historico.mensal">{{obj.consumo}} </ng-container></span> 		
+
+		      <span class="hidden" id="diarioTmp{{ device.uid }}"><ng-container *ngFor="let obj of device.historico.diario">{{obj.temperatura}} </ng-container></span> 
+		      <span class="hidden" id="diarioAbt{{ device.uid }}"><ng-container *ngFor="let obj of device.historico.diario">{{obj.abertura}} </ng-container></span> 
+		      <span class="hidden" id="diarioCsm{{ device.uid }}"><ng-container *ngFor="let obj of device.historico.diario">{{obj.consumo}} </ng-container></span>
+		      <span class="hidden" id="diarioHora{{ device.uid }}"><ng-container *ngFor="let obj of device.historico.diario">{{obj.hora}} </ng-container></span> 		         		      		          	    
+	    	<div  class="modal-dialog">
+	      		<div class="modal-content">
+	      			<div class="modalHeader">
+		      			<div>
+		      				<img class="imgFreezer" src="assets/images/modal-map-header.png" style="height: 150px; width: 100%;"/>
+		      			</div>
+		      			<div id="gradient">
+		    			</div>
+		    			<span class="closeModal modal{{ device.uid }}" onClick="closeModal(this)"><i class="fa fa-times" aria-hidden="true"></i></span>
+	    			</div>
+	    			<div class="modalTitle">
+	    				<div class="nome">Geladeira {{ device.uid }}</div>
+	    				<div class="endereco">{{ device.endereco }}</div>
+	    			</div>    			
+	    			<div class="modalSubTitle">
+	    				<span class="pull-left subTitle">RELATORIO</span>
+
+	    				<div class="switcher">
+		    				<span class="focused" id="daily{{ device.uid }}" onClick="switcherHistoric(this)">24 HORAS</span>
+		    				<span class="" id="month{{ device.uid }}" onClick="switcherHistoric(this)">30 DIAS</span>
+	    				</div>
+	    			</div>
+	    			<div class="modalContent">
+	    				<div class="row">
+	    					<div class="col-md-4 col-sm-12">
+	    						<div class="box left">
+	    							STATUS
+						          <span class="onOff">
+						            {{ device.status }}
+						          </span>
+	    						</div>
+	    						<div class="box tempModal">
+	    							<p>TEMPERATURA</p>
+
+	    							<span class="termometro"><i aria-hidden="true" class="fa fa-thermometer-half"></i></span>
+	    							<span class="temp space-t"><i aria-hidden="true" class="fa fa-caret-down"></i>{{ device.temperatura }}°C</span>
+	    						</div>
+	    						<div class="box left">
+	    							<p>ABERTURA DE PORTA</p>
+	    							{{  device.abertura }}
+	    						</div>
+	    						<div class="box">
+	    							<p>CONSUMO</p>
+	    							{{ device.consumo }}
+	    						</div>
+	    					</div>
+	    					<div class="col-md-8 col-sm-12 text-center">
+			    				<div class="switcher type">
+				    				<span class="switch focused" id="abt{{ device.uid }}" onClick="switcher(this)">ABERTURA</span>
+				    				<span class="switch focused" id="tmp{{ device.uid }}" onClick="switcher(this)">TEMPERATURA</span>
+				    				<span class="switch focused" id="csm{{ device.uid }}" onClick="switcher(this)">CONSUMO</span>
+			    				</div>    				
+			    			</div>
+			    			<div class="col-md-8 col-sm-12">
+			    				<div id="containerGraph{{ device.uid }}" style="min-width: 310px; height: 330px; margin: 0 auto"></div>
+	    					</div>
+	    				</div>
+	    			</div>
+	      		</div>
+	      	</div>
+	    </div>
+
+
+      </span>
+    </div>    
+    </section>
+
+
+    
