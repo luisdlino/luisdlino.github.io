@@ -1,0 +1,23 @@
+<div class="home">
+  <div class="buttons-container">
+    <button class="button" role="button" (click)="sortMoviesByTitle()">Sort By Title</button>
+    <button class="button" role="button" (click)="sortMoviesByDate()">Sort By Released Date</button>
+  </div>
+  <div class="movies-container">
+    <div class="movie-card" *ngFor="let movie of movies">
+      <ribbon [active]="watchList.includes(movie.id)" (click)="addToWatchList(movie.id)"></ribbon>
+      <img [src]="movie.image" (click)="goToMovie(movie)">
+      <div class="movie-description">
+        <h2 class="title">{{movie.title}}</h2>
+        <p class="description">{{movie.description}}</p>
+        <p class="rating">{{movie.rating}}</p>
+        <p class="duration">{{movie.duration}}</p>
+        <p class="genre">{{movie.genre}}</p>
+        <p class="released_date">{{movie.released_date}}</p>
+      </div>
+      <div class="watchlist-label" *ngIf="watchList.includes(movie.id)">
+        <label>On my watchlist</label>
+      </div>
+    </div>
+  </div>
+</div>

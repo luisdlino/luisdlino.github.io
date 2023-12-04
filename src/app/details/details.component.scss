@@ -1,0 +1,52 @@
+.details {
+  display: flex;
+  justify-content: center;
+  background: url('/assets/images/1154.jpg');
+  background-size: 500px;
+  padding-top: 50px;
+  padding-bottom: 100px;
+
+  .movie-detail {
+    display: flex;
+
+    img {
+      width: 400px;
+      margin-right: 20px;
+    }
+
+    .movie-description {
+      background: #fff;
+      padding: 15px;
+      -webkit-box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.38);
+      -moz-box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.38);
+      box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.38);
+
+      p span {
+        font-weight: bold;
+      }
+
+      .watchlist-label {
+        padding-right: 16px;
+        padding-top: 16px;
+
+        label {
+          border: 1px solid black;
+          padding: 3px 11px;
+          border-radius: 16px;
+          background: #fac227;
+
+          svg {
+            position: relative;
+            top: 2px;
+            right: 2px;
+          }
+        }
+      }
+
+      .youtube-trailer {
+        margin-top: 16px;
+        margin-bottom: 16px;
+      }
+    }
+  }
+}

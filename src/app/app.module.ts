@@ -1,23 +1,30 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatSliderModule } from '@angular/material/slider';
+
 import { AppComponent } from './app.component';
-import { FramePickerComponent } from '../components/framepicker/framepicker.component';
-import { FormsModule } from '@angular/forms';
-import {MatButtonModule} from '@angular/material/button';
+import { HomeComponent } from './home/home.component';
+import { DetailsComponent } from './details/details.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HttpService } from './services/http-service.service';
+import { HttpClientModule } from '@angular/common/http';
+import { MovieService } from './services/movie.service';
+import { RibbonComponent } from './components/ribbon/ribbon.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FramePickerComponent
+    HomeComponent,
+    DetailsComponent,
+    RibbonComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
-    MatSliderModule,
-    FormsModule,
-    MatButtonModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [HttpService, MovieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

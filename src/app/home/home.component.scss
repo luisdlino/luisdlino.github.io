@@ -1,0 +1,67 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: url('/assets/images/1154.jpg');
+  background-size: 500px;
+  padding-top: 50px;
+  padding-bottom: 100px;
+
+  .buttons-container {
+    margin-bottom: 20px;
+    justify-content: center;
+    display: flex;
+  }
+
+  .movies-container {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+
+    .movie-card {
+      border: 1px solid black;
+      width: 280px;
+      background: #fff;
+      -webkit-box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.38);
+      -moz-box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.38);
+      box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.38);
+
+      .movie-description {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0px 15px;
+
+        .title {
+          text-align: center;
+        }
+      }
+      img {
+        width: 100%;
+        cursor: pointer;
+      }
+
+      .watchlist-label {
+        text-align: right;
+        padding-right: 16px;
+        padding-top: 16px;
+        margin-bottom: 16px;
+
+        label {
+          border: 1px solid black;
+          padding: 3px 11px;
+          border-radius: 16px;
+          background: #fac227;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .movie-card {
+    width: 100%!important;
+  }
+}
