@@ -23,7 +23,7 @@ export class HomeComponent {
   ngOnInit() {
     this.httpService.getAllMovies().subscribe((res: any) => {
       this.movies = res;
-      this.watchList = this.movieService.returnWatchList();
+      this.watchList = this.movieService.returnWatchList() || [];
     })
   }
 
