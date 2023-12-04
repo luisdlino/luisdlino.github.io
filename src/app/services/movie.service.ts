@@ -27,7 +27,8 @@ export class MovieService {
 
   returnWatchList(): any {
     if (this.storage) {
-      return JSON.parse(this.storage.getItem('watchList') || '');
+      const watchList = this.storage.getItem('watchList');
+      return watchList ? JSON.parse(watchList) : [];
     }
     return null;
   }
